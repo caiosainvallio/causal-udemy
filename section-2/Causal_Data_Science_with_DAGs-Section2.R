@@ -15,6 +15,11 @@ library(tidyverse)
 library(dagitty)
 library(ggdag)
 
+
+
+
+
+
 #################################
 ##### Collider bias example #####
 #################################
@@ -56,14 +61,20 @@ e_y <- rnorm(10000)
 e_z <- rnorm(10000)
 
 # Create nodes for the DAG: y <- x, y <- z, x <- z  
-z <- 1*(e_z > 0)
-x <- 1*(z + e_x > 0.5)
-y <- 1*(x + z + e_y > 2)
+z     <- 1*(e_z > 0)
+x     <- 1*(z + e_x > 0.5)
+y     <- 1*(x + z + e_y > 2)
 y_dox <- 1*(1 + z + e_y > 2)
 
 # We see that P(y|do(x=1)) is not equal to P(y|x=1)
 mean(y_dox)
 mean(y[x==1])
+
+
+
+
+
+
 
 #######################################
 ##### Visualizing DAGs with ggdag #####
@@ -95,10 +106,14 @@ dag <- dagify(y ~ z5, y ~ z6, y ~ z1,
               coords=coords)
 
 # Plot the DAG
-ggdag(dag)
+ggdag(dag) + theme_dag()
 
 # Find all parents of outcome
-ggdag_parents(dag, "y")
+ggdag_parents(dag, "y") + theme_dag()
 
 # Find and plot all open paths between treatment and outcome
 ggdag_paths(dag)
+
+
+
+
