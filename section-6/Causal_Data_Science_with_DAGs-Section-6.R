@@ -168,4 +168,7 @@ mean(y2_dox)
 
 # But P^2(y|do(x)) = sum_z P^1(y|do(x),z) * P^2(z|x)
 mean(y1_dox[z1_dox==1]) * mean(z2[x2==1]==1) + 
-   mean(y1_dox[z1_dox==0]) * mean(z2[x2==1]==0)
+mean(y1_dox[z1_dox==0]) * mean(z2[x2==1]==0)
+
+
+
